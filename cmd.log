@@ -1,0 +1,8 @@
+# /mnt/data/DATASETS/AVA/test/OL_Wwo5W1Zs.mp4
+
+pip install fvcore
+
+export CUDA_VISIBLE_DEVICES=0
+python work.py --video-path /mnt/data/DATASETS/AVA/test/OL_Wwo5W1Zs.mp4 --save-path inference/ava_OL_Wwo5W1Zs.mp4  --save-video
+
+python work.py --video-path jf.mp4 --save-path inference/ava_jf.mp4

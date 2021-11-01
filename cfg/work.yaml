@@ -1,0 +1,50 @@
+TRAIN:
+  RESUME_PATH: "pretrained/work_16f_s2_best_ap_01719.pth"
+  DATASET: ava  # `ava`, `ucf24` or `jhmdb21`
+  BATCH_SIZE: 6
+  TOTAL_BATCH_SIZE: 128
+  LEARNING_RATE: 1e-4
+  EVALUATE: True
+  MODE: "val"  # `train`, `test` or `val`
+  BEGIN_EPOCH: 1
+  END_EPOCH: 10
+  CLASS_RATIO_FILE: "cfg/ava_categories_ratio.json"
+  USE_GROUNDTRUTH: False
+  USE_SLOWFAST: False
+DATA:
+  NUM_FRAMES: 16
+  SAMPLING_RATE: 1
+  TRAIN_JITTER_SCALES: [256, 320]
+  TRAIN_CROP_SIZE: 224
+SOLVER:
+  STEPS: [3, 4, 5, 6]
+  LR_DECAY_RATE: 0.5
+  ANCHORS: [0.71626, 2.13583, 1.28967, 4.15014, 2.12714, 5.09344, 3.27212, 5.87423, 5.16303, 6.33821]
+AVA:
+  BGR: False
+  DETECTION_SCORE_THRESH: 0.3
+  TEST_PREDICT_BOX_LISTS: ["person_box_67091280_iou90/ava_detection_val_boxes_and_labels.csv"]
+MODEL:
+  NUM_CLASSES: 80
+  BACKBONE_3D: resnext101
+  BACKBONE_2D: darknet
+WEIGHTS:
+  FREEZE_BACKBONE_3D: False
+  FREEZE_BACKBONE_2D: False
+DATA_LOADER:
+  NUM_WORKERS: 8
+  PIN_MEMORY: True
+BACKUP_DIR: "backup/ava"
+DEMO:
+  ENABLE: False
+  COMMON_CLASS_NAMES: ['talk to (e.g., self, a person, a group)', 'walk', 'sit', 'lie/sleep', 'bend/bow (at the waist)']
+  COMMON_CLASS_THRES: 0.2
+  UNCOMMON_CLASS_THRES: 0.3
+  INPUT_VIDEO: in.mp4
+  OUTPUT_FILE: out.mp4
+  OUT_PATH: "inference/videos"
+  LABEL_FILE_PATH: "cfg/action_list_v2.pbtxt"
+RNG_SEED: 1
+
+
+
